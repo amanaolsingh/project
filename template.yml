@@ -3,7 +3,7 @@ Resources:
   WebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "my-static-website-${AWS::AccountId}"
+      BucketName: !Sub "my-static-website-${AWS::922339134074}"
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: error.html
@@ -18,6 +18,6 @@ Resources:
         Statement:
           - Action: "s3:GetObject"
             Effect: "Allow"
-            Resource: !Sub "arn:aws:s3:::my-static-website-${AWS::AccountId}/*"
+            Resource: !Sub "arn:aws:s3:::my-static-website-${AWS::922339134074}/*"
             Principal: "*"
 
