@@ -1,23 +1,20 @@
-AWSTemplateFormatVersion: '2010-09-09'
 Resources:
-  WebsiteBucket:
+  StaticWebsiteBucket:
     Type: AWS::S3::Bucket
     Properties:
-      BucketName: !Sub "my-static-website-${AWS::AccountId}"
+      BucketName: myy-buckam  # Replace with a globally unique bucket name
       WebsiteConfiguration:
         IndexDocument: index.html
         ErrorDocument: error.html
-    DeletionPolicy: Retain
 
-  WebsiteBucketPolicy:
+  BucketPolicy:
     Type: AWS::S3::BucketPolicy
     Properties:
-      Bucket: !Ref WebsiteBucket
+      Bucket: !Ref StaticWebsiteBucket
       PolicyDocument:
-        Version: "2012-10-17"  # Adding version for the policy document
+        Version: '2012-10-17'
         Statement:
-          - Action: "s3:GetObject"
-            Effect: "Allow"
-            Resource: !Sub "arn:aws:s3:::my-static-website-${AWS::AccountId}/*"
+          - Effect: Allow
             Principal: "*"
-
+            Action: "s3:GetObject"
+            Resource: !Sub "arn:aws:s3:::${StaticWebsiteBucket}/*"
